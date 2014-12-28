@@ -51,12 +51,13 @@
         (recur (toggle accum (first sq)) (rest sq))))))
 
 (defn fast-fibo [n]
-  (loop [current-n 1
+  (loop [current 1
          f-n-1 0
          f-n 1]
-    (if (< current-n n)
-      (recur (inc current-n) f-n (+ f-n-1 f-n))
-      f-n)))
+    (cond
+      (zero? n) 0
+      (= current n) f-n
+      :else (recur (inc current) f-n (+ f-n-1 f-n)))))
 
 (defn cut-at-repetition [a-seq]
   (loop [already-met #{}
